@@ -20,8 +20,51 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "graphql"
     ],
     "rules": {
+        "arrow-parens": [
+            "error",
+            "as-needed",
+            {
+              // this rule can problems with HOC syntax in TS, but we are gonna keep it anyway
+              // https://github.com/iamturns/eslint-config-airbnb-typescript/issues/8
+              "requireForBlockBody": true
+            }
+          ],
+          "import/no-unresolved": "off",
+          "import/no-extraneous-dependencies": "off",
+          "no-plusplus": "off",
+          "react/destructuring-assignment": "off",
+          "react/jsx-one-expression-per-line": "off",
+          "no-param-reassign": "off",
+          "consistent-return": "off",
+          "no-underscore-dangle": "off",
+          "default-case": "off",
+          "radix": "off",
+          "class-methods-use-this": "off",
+          "complexity": [
+            "error",
+            10
+          ],
+          "max-depth": [
+            "error",
+            4
+          ],
+          "curly": "error",
+          "newline-per-chained-call": "error",
+          "eol-last": "error",
+          "no-multiple-empty-lines": [
+            "error",
+            {
+              "max": 1
+            }
+          ],
+          "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }]
+          // "graphql/template-strings": [
+          //   "warn"
+          // ]
+      
     }
 }
