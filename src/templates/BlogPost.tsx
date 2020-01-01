@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 
+import IBlogPost from '../models/IBlogPost';
 import Layout from '../components/layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
+// import Image from '../components/image';
+// import SEO from '../components/seo';
 
-const Template = ({ data, pathContext }) => {
+const Template = (props: IBlogPost) => {
+  const { data, pathContext } = props;
   const { title } = data.markdownRemark.frontmatter;
   const { date } = data.markdownRemark.frontmatter;
   const { html } = data.markdownRemark;
@@ -25,20 +27,20 @@ const Template = ({ data, pathContext }) => {
           {prev.frontmatter.title}
           {' '}
           <span role="img" aria-label="point-left">
-							👈
+👈
             {' '}
           </span>
-						Previous
+            Previous
         </Link>
         )}
       </p>
       <p>
         {next && (
         <Link to={next.frontmatter.path}>
-						Next
+          Next
           {' '}
           <span role="img" aria-label="point-right">
-							👉
+          👉
           </span>
           {next.frontmatter.title}
         </Link>
@@ -48,21 +50,19 @@ const Template = ({ data, pathContext }) => {
   );
 };
 
-/* eslint-disable no-tabs */
 export const postQuery = graphql`
-	query($pathSlug: String!) {
-		markdownRemark(frontmatter: { path: { eq: $pathSlug } }) {
-			html
-			frontmatter {
-				title
-				date(formatString: "MMMM, DD, YYYY")
-				path
-				tags
-				excerpt
-			}
-		}
-	}
+  query($pathSlug: String!) {
+    markdownRemark(frontmatter: { path: { eq: $pathSlug } }) {
+      html
+      frontmatter {
+        title
+        date(formatString: "MMMM, DD, YYYY")
+        path
+        tags
+        excerpt
+      }
+    }
+  }
 `;
-/* eslint-enable no-tabs */
 
 export default Template;
